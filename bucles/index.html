@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bucles en Introducción a la Programación">
+  <title>Bucles en Introducción a la Programación</title>
+  <link rel="icon" href="https://desingdata.github.io/desingdata/img/DesingData_favicon-96x96.png" sizes="96x96"
+    type="image/png">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <!-- Barra de navegación con menú hamburguesa para móvil y selector de tema -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+        <a href="#inicio"><span>Bucles</span></a>
+      </div>
+
+      <!-- Links visibles en desktop -->
+      <ul class="nav-links">
+        <li><a href="#conceptos">Conceptos</a></li>
+        <li><a href="#tipos">Tipos</a></li>
+        <li><a href="#playground">Playground</a></li>
+        <li><a href="#comparativa">Comparativa</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <!-- Selector de tema con dropdown -->
+        <div class="theme-dropdown">
+          <button class="theme-btn" id="themeBtn" onclick="toggleThemeMenu()">🎨 Tema</button>
+          <div class="theme-menu" id="themeMenu">
+            <button onclick="setTheme('dark')" class="active" id="t-dark">
+              <span class="dot" style="background:#7c3aed"></span> Oscuro
+            </button>
+            <button onclick="setTheme('light')" id="t-light">
+              <span class="dot" style="background:#f4f4f8;border:1px solid #ccc"></span> Claro
+            </button>
+            <button onclick="setTheme('ocean')" id="t-ocean">
+              <span class="dot" style="background:#00d4ff"></span> Océano
+            </button>
+            <button onclick="setTheme('forest')" id="t-forest">
+              <span class="dot" style="background:#22c55e"></span> Bosque
+            </button>
+            <button onclick="setTheme('sunset')" id="t-sunset">
+              <span class="dot" style="background:#f97316"></span> Atardecer
+            </button>
+          </div>
+        </div>
+
+        <!-- Botón hamburguesa para menú móvil -->
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menú desplegable móvil -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#conceptos" onclick="closeMenu()">Conceptos</a></li>
+      <li><a href="#tipos" onclick="closeMenu()">Tipos de Bucles</a></li>
+      <li><a href="#playground" onclick="closeMenu()">Playground</a></li>
+      <li><a href="#comparativa" onclick="closeMenu()">Comparativa</a></li>
+      <li><a href="#tips" onclick="closeMenu()">Tips</a></li>
+      <li><a href="#quiz" onclick="closeMenu()">Quiz</a></li>
+    </ul>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <!-- Sección de bienvenida con descripción del tema -->
+  <div class="hero" id="inicio">
+    <div class="hero-content fade-up">
+      <div class="hero-badge">📚 Introducción a la Programación</div>
+      <h1>Bucles</h1>
+      <p>Los bucles (loops) son estructuras de control que permiten ejecutar un bloque de código de forma repetida
+        mientras se cumpla una condición. Son fundamentales en todo programa.</p>
+      <div class="hero-btns">
+        <a href="#conceptos" class="btn-primary">Empezar a aprender</a>
+        <a href="#playground" class="btn-secondary">Ir al Playground →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+
+    <!-- SECCIÓN: CONCEPTOS CLAVE -->
+    <section id="conceptos">
+      <h2>Conceptos Clave</h2>
+      <div class="sep"></div>
+      <p class="section-sub">Antes de ver los tipos de bucles, entendamos los elementos que los componen.</p>
+      <div class="cards">
+
+        <!-- Iteración: una vuelta del bucle -->
+        <div class="card">
+          <div class="card-icon">🔄</div>
+          <h3>Iteración</h3>
+          <p>Una <strong>iteración</strong> es cada ejecución del cuerpo del bucle. Si un for-loop corre 5 veces,
+            realiza 5 iteraciones.</p>
+        </div>
+
+        <!-- Condición: regla que decide si continúa -->
+        <div class="card">
+          <div class="card-icon">❓</div>
+          <h3>Condición</h3>
+          <p>La <strong>condición</strong> es una expresión booleana que se evalúa antes (o después) de cada iteración.
+            Si es falsa, el bucle termina.</p>
+        </div>
+
+        <!-- Contador: variable que lleva la cuenta -->
+        <div class="card">
+          <div class="card-icon">🔢</div>
+          <h3>Variable Contadora</h3>
+          <p>Variable que generalmente se usa para contar iteraciones o recorrer índices. Se inicializa, se verifica y
+            se incrementa en cada ciclo.</p>
+        </div>
+
+        <!-- Bucle infinito: cuando la condición nunca es falsa -->
+        <div class="card">
+          <div class="card-icon">♾️</div>
+          <h3>Bucle Infinito</h3>
+          <p>Ocurre cuando la condición del bucle <em>nunca</em> se vuelve falsa. Debe evitarse o manejarse con una
+            instrucción de salida (<code>break</code>).</p>
+        </div>
+
+        <!-- break: salida forzada del bucle -->
+        <div class="card">
+          <div class="card-icon">🛑</div>
+          <h3>break</h3>
+          <p>Instrucción que <strong>detiene inmediatamente</strong> la ejecución del bucle, sin importar si la
+            condición sigue siendo verdadera.</p>
+        </div>
+
+        <!-- continue: salta al siguiente ciclo -->
+        <div class="card">
+          <div class="card-icon">⏭️</div>
+          <h3>continue</h3>
+          <p>Instrucción que <strong>salta la iteración actual</strong> y pasa directamente a la siguiente, sin ejecutar
+            el resto del cuerpo del bucle.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN: TIPOS DE BUCLES -->
+    <section id="tipos">
+      <h2>Tipos de Bucles</h2>
+      <div class="sep"></div>
+      <p class="section-sub">Los tres bucles fundamentales de la programación, con ejemplos comentados en JavaScript y
+        Python.</p>
+
+      <div class="code-section">
+
+        <!-- BUCLE FOR: cuando sabes cuántas veces repetir -->
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">🔵 for — JavaScript</span>
+            <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+          </div>
+          <pre><span class="cmt">// Bucle FOR: ideal cuando conocemos el número
+// exacto de iteraciones de antemano</span>
+
+<span class="cmt">// Estructura: for(inicio; condición; actualización)</span>
+<span class="kw">for</span> (<span class="kw">let</span> <span class="var">i</span> <span class="op">=</span> <span class="num">0</span>; <span class="var">i</span> <span class="op">&lt;</span> <span class="num">5</span>; <span class="var">i</span><span class="op">++</span>) {
+  <span class="cmt">// i++ incrementa el contador en 1 cada vuelta</span>
+  <span class="fn">console</span>.log(<span class="str">`Vuelta número: </span><span class="op">${</span><span class="var">i</span><span class="op">}</span><span class="str">`</span>);
+}
+
+<span class="cmt">// Recorrer un array con for</span>
+<span class="kw">const</span> <span class="var">frutas</span> <span class="op">=</span> [<span class="str">"manzana"</span>, <span class="str">"pera"</span>, <span class="str">"uva"</span>];
+<span class="kw">for</span> (<span class="kw">let</span> <span class="var">i</span> <span class="op">=</span> <span class="num">0</span>; <span class="var">i</span> <span class="op">&lt;</span> <span class="var">frutas</span>.length; <span class="var">i</span><span class="op">++</span>) {
+  <span class="fn">console</span>.log(<span class="var">frutas</span>[<span class="var">i</span>]); <span class="cmt">// accede por índice</span>
+}</pre>
+        </div>
+
+        <!-- BUCLE FOR en Python -->
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">🔵 for — Python</span>
+            <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+          </div>
+          <pre><span class="cmt"># Bucle FOR en Python: itera directamente
+# sobre elementos de una secuencia (range, lista)</span>
+
+<span class="cmt"># range(5) genera: 0, 1, 2, 3, 4</span>
+<span class="kw">for</span> <span class="var">i</span> <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="fn">print</span>(<span class="str">f"Vuelta número: </span><span class="op">{</span><span class="var">i</span><span class="op">}</span><span class="str">"</span>)
+
+<span class="cmt"># Recorrer lista directamente (sin índice)</span>
+<span class="var">frutas</span> <span class="op">=</span> [<span class="str">"manzana"</span>, <span class="str">"pera"</span>, <span class="str">"uva"</span>]
+<span class="kw">for</span> <span class="var">fruta</span> <span class="kw">in</span> <span class="var">frutas</span>:
+    <span class="fn">print</span>(<span class="var">fruta</span>) <span class="cmt"># Python simplifica el acceso</span>
+
+<span class="cmt"># range(inicio, fin, paso): range(0, 10, 2)
+# genera pares: 0, 2, 4, 6, 8</span></pre>
+        </div>
+
+        <!-- BUCLE WHILE: cuando no sabes cuántas veces -->
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">🟡 while — JavaScript</span>
+            <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+          </div>
+          <pre><span class="cmt">// Bucle WHILE: se ejecuta MIENTRAS la condición
+// sea verdadera. Útil cuando no conocemos el
+// número exacto de repeticiones</span>
+
+<span class="kw">let</span> <span class="var">contador</span> <span class="op">=</span> <span class="num">0</span>;
+
+<span class="kw">while</span> (<span class="var">contador</span> <span class="op">&lt;</span> <span class="num">5</span>) {
+  <span class="fn">console</span>.log(<span class="str">"Contador: "</span> <span class="op">+</span> <span class="var">contador</span>);
+  <span class="var">contador</span><span class="op">++</span>; <span class="cmt">// ⚠️ sin esto: bucle infinito!</span>
+}
+
+<span class="cmt">// Ejemplo: pedir entrada hasta que sea válida</span>
+<span class="kw">let</span> <span class="var">numero</span> <span class="op">=</span> <span class="num">-1</span>;
+<span class="kw">while</span> (<span class="var">numero</span> <span class="op">&lt;</span> <span class="num">0</span>) {
+  <span class="cmt">// En práctica real: leer input del usuario</span>
+  <span class="var">numero</span> <span class="op">=</span> <span class="fn">parseInt</span>(<span class="fn">prompt</span>(<span class="str">"Ingresa un positivo:"</span>));
+}</pre>
+        </div>
+
+        <!-- BUCLE DO-WHILE: ejecuta al menos una vez -->
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">🟠 do...while — JavaScript</span>
+            <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+          </div>
+          <pre><span class="cmt">// DO...WHILE: parecido a while, pero la condición
+// se verifica AL FINAL. Garantiza que el bloque
+// se ejecute AL MENOS una vez</span>
+
+<span class="kw">let</span> <span class="var">intentos</span> <span class="op">=</span> <span class="num">0</span>;
+
+<span class="kw">do</span> {
+  <span class="fn">console</span>.log(<span class="str">"Intento: "</span> <span class="op">+</span> <span class="var">intentos</span>);
+  <span class="var">intentos</span><span class="op">++</span>;
+} <span class="kw">while</span> (<span class="var">intentos</span> <span class="op">&lt;</span> <span class="num">3</span>); <span class="cmt">// verifica después</span>
+
+<span class="cmt">// Con break y continue:</span>
+<span class="kw">for</span> (<span class="kw">let</span> <span class="var">i</span> <span class="op">=</span> <span class="num">0</span>; <span class="var">i</span> <span class="op">&lt;</span> <span class="num">10</span>; <span class="var">i</span><span class="op">++</span>) {
+  <span class="kw">if</span> (<span class="var">i</span> <span class="op">===</span> <span class="num">3</span>) <span class="kw">continue</span>; <span class="cmt">// salta el 3</span>
+  <span class="kw">if</span> (<span class="var">i</span> <span class="op">===</span> <span class="num">6</span>) <span class="kw">break</span>;   <span class="cmt">// detiene en 6</span>
+  <span class="fn">console</span>.log(<span class="var">i</span>); <span class="cmt">// imprime: 0,1,2,4,5</span>
+}</pre>
+        </div>
+
+        <!-- FOR...OF: recorre valores de iterables -->
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">🟢 for...of — JavaScript</span>
+            <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+          </div>
+          <pre><span class="cmt">// FOR...OF: itera directamente sobre los VALORES
+// de un iterable (array, string, Set, Map).
+// Más limpio que el for tradicional con índice</span>
+
+<span class="kw">const</span> <span class="var">colores</span> <span class="op">=</span> [<span class="str">"rojo"</span>, <span class="str">"verde"</span>, <span class="str">"azul"</span>];
+
+<span class="kw">for</span> (<span class="kw">const</span> <span class="var">color</span> <span class="kw">of</span> <span class="var">colores</span>) {
+  <span class="fn">console</span>.log(<span class="var">color</span>); <span class="cmt">// rojo, verde, azul</span>
+}
+
+<span class="cmt">// También funciona con strings:</span>
+<span class="kw">for</span> (<span class="kw">const</span> <span class="var">letra</span> <span class="kw">of</span> <span class="str">"hola"</span>) {
+  <span class="fn">console</span>.log(<span class="var">letra</span>); <span class="cmt">// h, o, l, a</span>
+}</pre>
+        </div>
+
+        <!-- FOR...IN: recorre propiedades de objetos -->
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">🔴 for...in — JavaScript</span>
+            <div class="dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+          </div>
+          <pre><span class="cmt">// FOR...IN: itera sobre las CLAVES (keys) de
+// un objeto. Muy útil para recorrer propiedades
+// de objetos de JavaScript</span>
+
+<span class="kw">const</span> <span class="var">persona</span> <span class="op">=</span> {
+  <span class="var">nombre</span>: <span class="str">"Ana"</span>,
+  <span class="var">edad</span>: <span class="num">25</span>,
+  <span class="var">ciudad</span>: <span class="str">"Bogotá"</span>
+};
+
+<span class="kw">for</span> (<span class="kw">const</span> <span class="var">clave</span> <span class="kw">in</span> <span class="var">persona</span>) {
+  <span class="cmt">// clave es: "nombre", "edad", "ciudad"</span>
+  <span class="fn">console</span>.log(<span class="var">clave</span> <span class="op">+</span> <span class="str">": "</span> <span class="op">+</span> <span class="var">persona</span>[<span class="var">clave</span>]);
+}
+<span class="cmt">// → nombre: Ana
+// → edad: 25
+// → ciudad: Bogotá</span></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN: PLAYGROUND -->
+    <!-- Área interactiva para experimentar con bucles en tiempo real -->
+    <section id="playground">
+      <h2>Playground Interactivo</h2>
+      <div class="sep"></div>
+      <p class="section-sub">Experimenta con los bucles directamente en el navegador. ¡Cambia los valores y observa los
+        resultados!</p>
+
+      <div class="playground">
+        <div class="playground-header">
+          <h3>Ejecutor de Bucles</h3>
+          <span class="tag">LIVE</span>
+        </div>
+        <div class="playground-body">
+
+          <div>
+            <label for="loopType">Tipo de Bucle</label>
+            <select class="pg-select" id="loopType">
+              <option value="for">for — Contador clásico</option>
+              <option value="while">while — Condición</option>
+              <option value="dowhile">do...while — Al menos 1 vez</option>
+              <option value="forof">for...of — Recorrer array</option>
+              <option value="fizz">FizzBuzz — Ejemplo clásico</option>
+              <option value="tabla">Tabla de multiplicar</option>
+              <option value="sumar">Sumar elementos de array</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="loopLimit">Valor límite / iteraciones</label>
+            <input class="pg-input" type="number" id="loopLimit" value="10" min="1" max="50">
+          </div>
+
+          <button class="pg-run-btn" onclick="runLoop()">▶ Ejecutar Bucle</button>
+
+          <div class="pg-output" id="pgOutput">
+            <span style="color:var(--text2)">// El resultado aparecerá aquí...</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: COMPARATIVA -->
+    <section id="comparativa">
+      <h2>Tabla Comparativa</h2>
+      <div class="sep"></div>
+      <p class="section-sub">¿Cuándo usar cada tipo de bucle?</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Bucle</th>
+              <th>Cuándo usarlo</th>
+              <th>Condición</th>
+              <th>Mín. ejecuciones</th>
+              <th>Uso típico</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>for</td>
+              <td>Número de iteraciones conocido</td>
+              <td>Al inicio</td>
+              <td>0</td>
+              <td><span class="badge good">Muy común</span></td>
+            </tr>
+            <tr>
+              <td>while</td>
+              <td>Condición dinámica, iters. desconocidas</td>
+              <td>Al inicio</td>
+              <td>0</td>
+              <td><span class="badge good">Muy común</span></td>
+            </tr>
+            <tr>
+              <td>do...while</td>
+              <td>Debe ejecutarse al menos una vez</td>
+              <td>Al final</td>
+              <td>1</td>
+              <td><span class="badge med">Moderado</span></td>
+            </tr>
+            <tr>
+              <td>for...of</td>
+              <td>Recorrer valores de arrays/strings</td>
+              <td>Automática</td>
+              <td>0</td>
+              <td><span class="badge good">Muy común</span></td>
+            </tr>
+            <tr>
+              <td>for...in</td>
+              <td>Recorrer propiedades de objetos</td>
+              <td>Automática</td>
+              <td>0</td>
+              <td><span class="badge med">Moderado</span></td>
+            </tr>
+            <tr>
+              <td>forEach()</td>
+              <td>Recorrer arrays (estilo funcional)</td>
+              <td>Automática</td>
+              <td>0</td>
+              <td><span class="badge good">Muy común</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: TIPS -->
+    <section id="tips">
+      <h2>Buenas Prácticas</h2>
+      <div class="sep"></div>
+      <p class="section-sub">Consejos esenciales para escribir bucles eficientes y libres de errores.</p>
+      <div class="tips-grid">
+        <div class="tip">
+          <h4>Evita el Bucle Infinito</h4>
+          <p>Asegúrate siempre de que la variable contadora o la condición cambien con cada iteración para que el bucle
+            termine.</p>
+        </div>
+        <div class="tip">
+          <h4>No modifiques el array que recorres</h4>
+          <p>Agregar o eliminar elementos de un array mientras lo recorres puede causar comportamientos inesperados o
+            saltar elementos.</p>
+        </div>
+        <div class="tip">
+          <h4>Prefiere for...of sobre for clásico</h4>
+          <p>Cuando solo necesitas los valores (no el índice), <code>for...of</code> hace el código más limpio y
+            legible.</p>
+        </div>
+        <div class="tip">
+          <h4>Usa break con precaución</h4>
+          <p><code>break</code> es útil para salir al encontrar un elemento, pero úsalo con lógica clara para no generar
+            código confuso.</p>
+        </div>
+        <div class="tip">
+          <h4>Nombra bien tus contadores</h4>
+          <p>En bucles simples usa <code>i</code>, <code>j</code>. En bucles más complejos usa nombres descriptivos como
+            <code>indice</code> o <code>columna</code>.</p>
+        </div>
+        <div class="tip">
+          <h4>Limita los bucles anidados</h4>
+          <p>Los bucles dentro de bucles (anidados) tienen complejidad O(n²). Úsalos solo cuando sea necesario y
+            considera refactorizar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: QUIZ -->
+    <!-- Mini evaluación interactiva para reforzar el aprendizaje -->
+    <section id="quiz">
+      <h2>Quiz de Evaluación</h2>
+      <div class="sep"></div>
+      <p class="section-sub">Pon a prueba lo que aprendiste. 6 preguntas sobre bucles.</p>
+      <div class="quiz-card">
+        <p class="quiz-q" id="quizQuestion"></p>
+        <div class="quiz-opts" id="quizOpts"></div>
+        <p class="quiz-feedback" id="quizFeedback"></p>
+        <div class="quiz-nav">
+          <button onclick="prevQ()">← Anterior</button>
+          <button onclick="nextQ()">Siguiente →</button>
+          <span class="quiz-score" id="quizScore"></span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p><strong>· <a style="text-decoration: none;" href="https://desingdata.github.io/desingdata/"
+          target="_blank"><code>Desing
+        Data</code> </a> 2026 |</strong></p>
+    <p><strong>·<a style="text-decoration: none;" href="https://miguelmauricioriveralopez18686.github.io/mrlPortafolio/"
+          target="_blank"><code>Miguel Mauricio Rivera López</a></strong></p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
