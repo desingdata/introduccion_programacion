@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Funciones en Introducción a la Programación</title>
+  <link rel="icon" href="https://desingdata.github.io/desingdata/img/DesingData_favicon-96x96.png" sizes="96x96"
+    type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">⚡ <span>Funciones </span> Intro Programación</div>
+      <button class="hamburger" id="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#declaracion">Declaración</a></li>
+        <li><a href="#parametros">Parámetros</a></li>
+        <li><a href="#retorno">Retorno</a></li>
+        <li><a href="#tipos">Tipos</a></li>
+        <li><a href="#ambito">Ámbito</a></li>
+        <li><a href="#lab">Laboratorio</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="theme-btn active" data-t="dark" title="Oscuro"></button>
+        <button class="theme-btn" data-t="light" title="Claro"></button>
+        <button class="theme-btn" data-t="forest" title="Bosque"></button>
+        <button class="theme-btn" data-t="ocean" title="Océano"></button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Funciones en <span>Introducción a la Programación</span></h1>
+    <p>Aprende a declarar, usar y combinar funciones con ejemplos interactivos comentados línea a línea.</p>
+  </div>
+
+  <main>
+    <section class="section" id="declaracion">
+      <div class="section-header">
+        <div class="section-icon">📝</div>
+        <div>
+          <h2>1. Declaración de Funciones</h2>
+          <div class="subtitle">Cómo definir una función por primera vez</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Declaración clásica <span class="tag">function declaration</span></h3>
+          <p>Usa la palabra clave <code>function</code>. Puede llamarse antes de declararse (hoisting).</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-comment">// "function" inicia la definición; "saludar" es el nombre</span>
+<span class="c-key">function</span> <span class="c-fn">saludar</span>() {
+  <span class="c-comment">// El cuerpo va entre llaves {}</span>
+  <span class="c-builtin">console</span>.log(<span class="c-str">"¡Hola, mundo!"</span>);
+}
+<span class="c-comment">// Invocar la función añadiendo "()"</span>
+<span class="c-fn">saludar</span>();  <span class="c-comment">// → ¡Hola, mundo!</span></code></pre>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Expresión de función <span class="tag">function expression</span></h3>
+          <p>La función se asigna como valor a una variable. No tiene hoisting.</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-comment">// La función anónima se guarda en la variable</span>
+<span class="c-key">const</span> <span class="c-fn">despedir</span> = <span class="c-key">function</span>() {
+  <span class="c-key">return</span> <span class="c-str">"¡Hasta luego!"</span>;
+};
+<span class="c-builtin">console</span>.log(<span class="c-fn">despedir</span>());  <span class="c-comment">// → ¡Hasta luego!</span></code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="parametros">
+      <div class="section-header">
+        <div class="section-icon">🔧</div>
+        <div>
+          <h2>2. Parámetros y Argumentos</h2>
+          <div class="subtitle">Enviar datos hacia dentro de la función</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Parámetros simples <span class="tag">parameters</span></h3>
+          <p>Actúan como variables locales que reciben valores al momento de la llamada.</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-comment">// "nombre" y "edad" son parámetros (variables locales)</span>
+<span class="c-key">function</span> <span class="c-fn">presentar</span>(nombre, edad) {
+  <span class="c-comment">// Template literal: interpolación con ${}</span>
+  <span class="c-key">return</span> <span class="c-str">`Soy ${nombre}, tengo ${edad} años`</span>;
+}
+<span class="c-comment">// "Ana" y 22 son los argumentos (valores reales)</span>
+<span class="c-builtin">console</span>.log(<span class="c-fn">presentar</span>(<span class="c-str">"Ana"</span>, <span class="c-num">22</span>));
+<span class="c-comment">// → Soy Ana, tengo 22 años</span></code></pre>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Parámetros por defecto <span class="tag">default params</span></h3>
+          <p>Si el argumento no se pasa, se usa el valor predefinido en la firma.</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-comment">// "mundo" es el valor por defecto de "nombre"</span>
+<span class="c-key">function</span> <span class="c-fn">hola</span>(nombre = <span class="c-str">"mundo"</span>) {
+  <span class="c-key">return</span> <span class="c-str">`¡Hola, ${nombre}!`</span>;
+}
+<span class="c-fn">hola</span>();          <span class="c-comment">// → ¡Hola, mundo!</span>
+<span class="c-fn">hola</span>(<span class="c-str">"Carlos"</span>); <span class="c-comment">// → ¡Hola, Carlos!</span></code></pre>
+          </div>
+          <div class="demo">
+            <h4>🎮 Prueba — Parámetro por defecto</h4>
+            <div class="demo-row"><input id="p-nombre" placeholder="Tu nombre (vacío = default)"><button
+                class="btn btn-sm" onclick="demoHola()">Ejecutar</button></div>
+            <div class="result" id="r-hola">Ingresa un nombre o deja vacío...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="retorno">
+      <div class="section-header">
+        <div class="section-icon">↩️</div>
+        <div>
+          <h2>3. Valor de Retorno</h2>
+          <div class="subtitle">La función produce un resultado usable</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>return simple <span class="tag">return</span></h3>
+          <p>Devuelve un único valor. Nada después de <code>return</code> se ejecuta.</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-comment">// Calcula el área de un rectángulo</span>
+<span class="c-key">function</span> <span class="c-fn">area</span>(base, altura) {
+  <span class="c-key">return</span> base * altura; <span class="c-comment">// ← sale aquí</span>
+}
+<span class="c-key">const</span> r = <span class="c-fn">area</span>(<span class="c-num">5</span>, <span class="c-num">3</span>);
+<span class="c-builtin">console</span>.log(r); <span class="c-comment">// → 15</span></code></pre>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Calculadora interactiva <span class="tag">demo</span></h3>
+          <p>Función con parámetros y retorno aplicados a operaciones básicas.</p>
+          <div class="demo">
+            <h4>🔢 Calculadora</h4>
+            <div class="demo-row">
+              <input id="c-a" type="number" value="10">
+              <select id="c-op">
+                <option value="+">Sumar (+)</option>
+                <option value="-">Restar (-)</option>
+                <option value="*">Multiplicar (×)</option>
+                <option value="/">Dividir (÷)</option>
+                <option value="%">Módulo (%)</option>
+                <option value="**">Potencia (^)</option>
+              </select>
+              <input id="c-b" type="number" value="3">
+            </div>
+            <div class="demo-row"><button class="btn" onclick="demoCalc()">Calcular</button></div>
+            <div class="result" id="r-calc">Esperando operación...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tipos">
+      <div class="section-header">
+        <div class="section-icon">🔀</div>
+        <div>
+          <h2>4. Tipos de Funciones</h2>
+          <div class="subtitle">Formas alternativas de escribir funciones en JS</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Arrow Function <span class="tag">ES6 =&gt;</span></h3>
+          <p>Sintaxis compacta. Sin cuerpo retorna implícitamente. No tiene <code>this</code> propio.</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-comment">// Arrow: "=>" reemplaza la palabra "function"</span>
+<span class="c-key">const</span> <span class="c-fn">doble</span> = (n) => n * <span class="c-num">2</span>; <span class="c-comment">// return implícito</span>
+<span class="c-comment">// Con cuerpo multilínea: necesita {} y return</span>
+<span class="c-key">const</span> <span class="c-fn">potencia</span> = (base, exp) => {
+  <span class="c-key">return</span> base ** exp;
+};
+<span class="c-fn">doble</span>(<span class="c-num">4</span>);        <span class="c-comment">// → 8</span>
+<span class="c-fn">potencia</span>(<span class="c-num">2</span>,<span class="c-num">8</span>); <span class="c-comment">// → 256</span></code></pre>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Callback <span class="tag">función como argumento</span></h3>
+          <p>Una función que se pasa como argumento a otra para ejecutarse después.</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-comment">// "operacion" es un parámetro que espera una función</span>
+<span class="c-key">function</span> <span class="c-fn">operar</span>(a, b, operacion) {
+  <span class="c-key">return</span> <span class="c-fn">operacion</span>(a, b); <span class="c-comment">// invoca el callback</span>
+}
+<span class="c-fn">operar</span>(<span class="c-num">6</span>, <span class="c-num">2</span>, (x,y) => x + y); <span class="c-comment">// → 8</span>
+<span class="c-fn">operar</span>(<span class="c-num">6</span>, <span class="c-num">2</span>, (x,y) => x * y); <span class="c-comment">// → 12</span></code></pre>
+          </div>
+        </div>
+        <div class="card">
+          <h3>IIFE <span class="tag">invocación inmediata</span></h3>
+          <p>Se declara y ejecuta al mismo tiempo. Crea un ámbito privado aislado.</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-comment">// () externos invocan la función al instante</span>
+<span class="c-key">const</span> resultado = (<span class="c-key">function</span>() {
+  <span class="c-key">const</span> secreto = <span class="c-num">42</span>; <span class="c-comment">// variable privada</span>
+  <span class="c-key">return</span> secreto * <span class="c-num">2</span>;
+})();
+<span class="c-builtin">console</span>.log(resultado); <span class="c-comment">// → 84</span></code></pre>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Recursiva <span class="tag">recursión</span></h3>
+          <p>La función se llama a sí misma. Necesita un caso base para no buclar infinitamente.</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-comment">// Factorial: n! = n × (n-1) × … × 1</span>
+<span class="c-key">function</span> <span class="c-fn">factorial</span>(n) {
+  <span class="c-comment">// Caso base: detiene la cadena de llamadas</span>
+  <span class="c-key">if</span> (n &lt;= <span class="c-num">1</span>) <span class="c-key">return</span> <span class="c-num">1</span>;
+  <span class="c-comment">// Caso recursivo: n × factorial(n-1)</span>
+  <span class="c-key">return</span> n * <span class="c-fn">factorial</span>(n - <span class="c-num">1</span>);
+}
+<span class="c-fn">factorial</span>(<span class="c-num">5</span>); <span class="c-comment">// → 120</span></code></pre>
+          </div>
+          <div class="demo">
+            <h4>🎮 Prueba Factorial</h4>
+            <div class="demo-row"><input id="f-n" type="number" min="0" max="15" value="5"><button class="btn btn-sm"
+                onclick="demoFactorial()">Calcular</button></div>
+            <div class="result" id="r-factorial">Esperando...</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ambito">
+      <div class="section-header">
+        <div class="section-icon">🔭</div>
+        <div>
+          <h2>5. Ámbito (Scope) y Closure</h2>
+          <div class="subtitle">Dónde viven y cuánto duran las variables</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Global vs Local <span class="tag">scope</span></h3>
+          <p>Variables globales: visibles en todo el programa. Locales: solo dentro de su función.</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-key">const</span> global = <span class="c-str">"Soy global"</span>; <span class="c-comment">// accesible en todo</span>
+
+<span class="c-key">function</span> <span class="c-fn">ejemplo</span>() {
+  <span class="c-key">const</span> local = <span class="c-str">"Soy local"</span>; <span class="c-comment">// solo aquí dentro</span>
+  <span class="c-builtin">console</span>.log(global); <span class="c-comment">// ✓</span>
+  <span class="c-builtin">console</span>.log(local);  <span class="c-comment">// ✓</span>
+}
+<span class="c-fn">ejemplo</span>();
+<span class="c-comment">// console.log(local) → ❌ ReferenceError</span></code></pre>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Closure — función que recuerda <span class="tag">closure</span></h3>
+          <p>Función interna que conserva acceso a variables del ámbito padre, incluso después de que este termine.</p>
+          <div class="code-wrap"><button class="copy-btn" onclick="copiar(this)">Copiar</button>
+            <pre><code><span class="c-comment">// Fábrica de contadores independientes</span>
+<span class="c-key">function</span> <span class="c-fn">crearContador</span>() {
+  <span class="c-key">let</span> cuenta = <span class="c-num">0</span>; <span class="c-comment">// variable "capturada"</span>
+  <span class="c-key">return</span> () => {
+    cuenta++;          <span class="c-comment">// recuerda "cuenta"</span>
+    <span class="c-key">return</span> cuenta;
+  };
+}
+<span class="c-key">const</span> <span class="c-fn">contar</span> = <span class="c-fn">crearContador</span>();
+<span class="c-fn">contar</span>(); <span class="c-comment">// → 1</span>
+<span class="c-fn">contar</span>(); <span class="c-comment">// → 2</span></code></pre>
+          </div>
+          <div class="demo">
+            <h4>🎮 Closure — Contador en vivo</h4>
+            <div class="demo-row">
+              <button class="btn btn-sm" onclick="demoClosure('+1')">+1</button>
+              <button class="btn btn-sm" onclick="demoClosure('+5')">+5</button>
+              <button class="btn btn-sm" onclick="demoClosure('reset')"
+                style="background:var(--surface);color:var(--text);border:1px solid var(--border)">Reset</button>
+            </div>
+            <div class="result" id="r-closure">Contador: 0</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="lab">
+      <div class="section-header">
+        <div class="section-icon">🚀</div>
+        <div>
+          <h2>6. Laboratorio de Funciones</h2>
+          <div class="subtitle">Escribe y ejecuta tu propio código</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Editor + Consola en vivo</h3>
+        <p>Modifica el código y haz clic en Ejecutar para ver el resultado.</p>
+        <textarea id="editor"
+          style="width:100%;background:var(--code-bg);color:var(--code-text);border:1px solid var(--border);border-radius:8px;padding:1rem;font-family:monospace;font-size:.85rem;min-height:200px;resize:vertical;line-height:1.7;outline:none">// ── Combina todos los conceptos aprendidos ──
+
+// 1. Arrow function con retorno implícito
+const clasificar = (n) =>
+  n > 0 ? "positivo" : n < 0 ? "negativo" : "cero";
+
+// 2. Función que recibe un callback
+const aplicarA = (lista, fn) => lista.map(fn);
+
+// 3. Closure — generador de multiplicadores
+const multiplicador = (factor) => (n) => n * factor;
+const triple = multiplicador(3);
+
+// Usamos las tres funciones
+const nums = [5, -3, 0, 8, -1];
+console.log("Clasificación:", aplicarA(nums, clasificar));
+console.log("Triple:", aplicarA(nums, triple));
+console.log("5! =", (f=n=>n<=1?1:n*f(n-1))(5));</textarea>
+        <div style="display:flex;gap:.75rem;margin-top:.75rem;flex-wrap:wrap">
+          <button class="btn" onclick="ejecutar()">▶ Ejecutar</button>
+          <button class="btn" style="background:var(--surface);color:var(--text-muted);border:1px solid var(--border)"
+            onclick="document.getElementById('r-editor').textContent=''">Limpiar</button>
+        </div>
+        <div style="margin-top:.75rem">
+          <div style="font-size:.8rem;color:var(--text-muted);margin-bottom:.4rem">📋 Salida:</div>
+          <div class="result" id="r-editor" style="white-space:pre-wrap;min-height:80px"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Proyecto educativo · Funciones en Introducción a la Programación · JavaScript ES6+</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
